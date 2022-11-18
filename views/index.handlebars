@@ -19,6 +19,9 @@
 
 <!-- restaurant list -->
 <div class="container mt-5">
+  {{#unless restaurants}}
+    <div class="fs-4 text-center">查無結果</div>
+  {{/unless}}
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="row row-cols-sm-3">
@@ -48,7 +51,7 @@
             <a href="/restaurants/{{this._id}}" class="btn btn-outline-secondary btn-sm ms-auto"><small>詳情</small></a>
             <a href="/restaurants/{{this._id}}/edit" class="btn btn-outline-secondary btn-sm ms-2"><small>編輯</small></a>
             <form action="/restaurants/{{this._id}}/delete" method="POST">
-              <button type="submit" class="btn btn-outline-secondary btn-sm d-inline ms-2"><small>刪除</small></button>
+              <button type="submit" class="btn btn-outline-secondary btn-sm d-inline ms-2" onclick="return confirm('確定要刪除嗎?')"><small>刪除</small></button>
             </form>
           </div>
         </div>

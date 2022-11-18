@@ -4,9 +4,7 @@
   <div class="d-flex">
     <a href="/restaurants/{{restaurant._id}}/edit" class="btn btn-light ms-auto">編輯</a>
     <a href="/" class="btn btn-light ms-2">返回</a>
-    <form action="/restaurants/{{restaurant._id}}/delete" method="POST">
-      <button type="submit" class="btn btn-light d-inline ms-2">刪除</button>
-    </form>
+    <button type="button" class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#delete-restaurant">刪除</button>
   </div>
 
   <!-- details -->
@@ -47,6 +45,21 @@
       <img class="rounded mx-auto d-block mb-4 w-100"
         src="{{restaurant.image}}" alt="{{restaurant.name}}"
         style="max-width: 600px;">
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="delete-restaurant" tabindex="-1" aria-labelledby="modal1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center p-3">
+      確定要刪除嗎?
+      <div class="d-flex justify-content-center mt-3">
+        <form action="/restaurants/{{restaurant._id}}/delete" method="POST">
+          <button type="submit" class="btn btn-outline-secondary btn-sm">是</button>
+        </form>
+        <button type="button" class="btn btn-secondary btn-sm ms-3" data-bs-dismiss="modal">否</button>
+      </div>
     </div>
   </div>
 </div>

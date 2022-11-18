@@ -52,11 +52,12 @@ app.get('/search', (req, res) => {
   RestaurantModel.find()
     .lean()
     .then(restaurants => {
-      const restaurantsFiltered = restaurants.filter(item => {
+      let restaurantsFiltered = restaurants.filter(item => {
         const nameMatched = item.name.toLowerCase().includes(keyword.trim().toLowerCase())
         const categoryMatched = item.category.toLowerCase().includes(keyword.trim().toLowerCase())
         return nameMatched || categoryMatched
       })
+      restaurantsFiltered = restaurantsFiltered.length ? restaurantsFiltered : false
       res.render('index', { restaurants: restaurantsFiltered, keyword })
     })
     .catch(error => console.log(error))
