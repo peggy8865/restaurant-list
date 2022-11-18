@@ -1,0 +1,48 @@
+<h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
+<div class="container">
+
+  <div class="row">
+    <div class="col-12 col-md-10 mx-auto">
+      <form action="/restaurants/{{restaurant._id}}" method="POST">
+      <!-- buttons -->
+      <div class="d-flex mb-3">
+        <button type="submit" class="btn btn-outline-secondary ms-auto">儲存</button>
+        <a href="./" class="btn btn-light ms-2">取消</a>
+      </div>
+
+      <!-- details -->
+        <div class="row px-2">
+          <div class="col border-end px-3 mb-4">
+            <p class="text-black-50 my-0"><small>(必填欄位)</small></p>
+            <label for="name" class="col-form-label">餐廳名稱：</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{restaurant.name}}" required>
+            <label for="category" class="col-form-label">餐廳類型：</label>
+            <input type="text" class="form-control" list="suggested-category" id="category" name="category" value="{{restaurant.category}}" required>
+            <datalist id="suggested-category">
+              <option value="中東料理">
+              <option value="日本料理">
+              <option value="義式餐廳">
+              <option value="美式">
+              <option value="酒吧">
+              <option value="咖啡">
+            </datalist>
+            <label for="rating" class="col-form-label">評分：</label>
+            <input type="number" class="form-control" id="rating" name="rating" placeholder="0-5顆星" step="0.1" max="5"
+              min="0" value="{{restaurant.rating}}" required>
+          </div>
+          <div class="col px-3 mb-4">
+            <p class="text-black-50 my-0"><small>(自由填答)</small></p>
+            <label for="description" class="col-form-label">簡介：</label>
+            <textarea class="form-control" id="description" name="description" rows="5" cols="33">{{restaurant.description}}</textarea>
+            <label for="image" class="col-form-label">照片：</label>
+            <input type="text" class="form-control" id="image" name="image" placeholder="請輸入圖片網址" value="{{restaurant.image}}">
+            <label for="location" class="col-form-label">地址：</label>
+            <input type="text" class="form-control" id="location" name="location" value="{{restaurant.location}}">
+            <label for="phone" class="col-form-label">電話：</label>
+            <input type="text" class="form-control" id="phone" name="phone" value="{{restaurant.phone}}">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

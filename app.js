@@ -29,6 +29,9 @@ app.set('view engine', 'handlebars')
 // setting static files
 app.use(express.static('public'))
 
+// setting body-parser
+app.use(express.urlencoded({extended: true}))
+
 // setting routes
 app.get('/', (req, res) => {
   RestaurantModel.find()
@@ -56,6 +59,43 @@ app.get('/search', (req, res) => {
       })
       res.render('index', { restaurants: restaurantsFiltered, keyword })
     })
+    .catch(error => console.log(error))
+})
+
+// create a restaurant
+app.post('/restaurants', (req, res) => {
+  RestaurantModel.create(req.body)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+// get to edit page
+app.get('/restaurants/:id/edit', (req, res) => {
+  RestaurantModel.findById(req.params.id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+// edit the restaurant
+app.post('/restaurants/:id', (req, res) => {
+  const restaurantEdited = req.body
+  RestaurantModel.findById(req.params.id)
+    .then(restaurant => {
+      for (let key in restaurantEdited) {
+        restaurant[key] = restaurantEdited[key]
+      }
+      restaurant.save()
+    })
+    .then(() => res.redirect(req.originalUrl))
+    .catch(error => console.log(error))
+})
+
+// delete the restaurant
+app.post('/restaurants/:id/delete', (req, res) => {
+  RestaurantModel.findById(req.params.id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 

@@ -11,6 +11,7 @@
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
         </div>
+        <h6 class="my-2">找不到餐廳嗎? 試試 <a type="button" class="text-muted" data-bs-toggle="modal" data-bs-target="#create-restaurant">新增餐廳</a> 吧！</h6>
       </form>
     </div>
   </div>
@@ -22,10 +23,11 @@
     <div class="col-md-10 col-12 mx-auto">
       <div class="row row-cols-sm-3">
         {{#each restaurants}}
+        
+        <div>
           <a href="/restaurants/{{this._id}}" class="text-secondary">
             <div class="card mb-3">
-              <img class="card-img-top" src="{{this.image}}"
-                alt="{{this.name}}">
+              <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
               <div class="card-body p-3">
                 <h6 class="card-title mb-1">{{this.name}}</h6>
 
@@ -41,7 +43,67 @@
               </div>
             </div>
           </a>
+
+          <div class="d-flex mb-3">
+            <a href="/restaurants/{{this._id}}" class="btn btn-outline-secondary btn-sm ms-auto"><small>詳情</small></a>
+            <a href="/restaurants/{{this._id}}/edit" class="btn btn-outline-secondary btn-sm ms-2"><small>編輯</small></a>
+            <form action="/restaurants/{{this._id}}/delete" method="POST">
+              <button type="submit" class="btn btn-outline-secondary btn-sm d-inline ms-2"><small>刪除</small></button>
+            </form>
+          </div>
+        </div>
+        
         {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="create-restaurant" tabindex="-1" aria-labelledby="modal1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modal1">新增餐廳</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/restaurants" method="POST">
+          <div class="row px-2">
+            <div class="col border-end px-3">
+              <p class="text-black-50 my-0"><small>(必填欄位)</small></p>
+              <label for="name" class="col-form-label">餐廳名稱：</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+              <label for="category" class="col-form-label">餐廳類型：</label>
+              <input type="text" class="form-control" list="suggested-category" id="category" name="category" required>
+              <datalist id="suggested-category">
+                <option value="中東料理">
+                <option value="日本料理">
+                <option value="義式餐廳">
+                <option value="美式">
+                <option value="酒吧">
+                <option value="咖啡">
+              </datalist>
+              <label for="rating" class="col-form-label">評分：</label>
+              <input type="number" class="form-control" id="rating" name="rating" placeholder="0-5顆星" step="0.1" max="5" min="0" required>
+            </div>
+            <div class="col px-3">
+              <p class="text-black-50 my-0"><small>(自由填答)</small></p>
+              <label for="description" class="col-form-label">簡介：</label>
+              <textarea class="form-control" id="description" name="description" rows="5" cols="33"></textarea>
+              <label for="image" class="col-form-label">照片：</label>
+              <input type="text" class="form-control" id="image" name="image" placeholder="請輸入圖片網址">
+              <label for="location" class="col-form-label">地址：</label>
+              <input type="text" class="form-control" id="location" name="location">
+              <label for="phone" class="col-form-label">電話：</label>
+              <input type="text" class="form-control" id="phone" name="phone">
+            </div>
+          </div>
+          <div class="d-flex my-3">
+            <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">取消</button>
+            <button type="submit" class="btn btn-primary ms-2">儲存</button>
+          </div>
+          </form>
       </div>
     </div>
   </div>
