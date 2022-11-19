@@ -55,7 +55,7 @@
     <div class="modal-content text-center p-3">
       確定要刪除嗎?
       <div class="d-flex justify-content-center mt-3">
-        <form action="/restaurants/{{restaurant._id}}/delete" method="POST">
+        <form action="/restaurants/{{restaurant._id}}?_method=DELETE" method="POST">
           <button type="submit" class="btn btn-outline-secondary btn-sm">是</button>
         </form>
         <button type="button" class="btn btn-secondary btn-sm ms-3" data-bs-dismiss="modal">否</button>

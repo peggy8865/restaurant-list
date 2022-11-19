@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const RestaurantModel = require('./models/restaurant')
 
@@ -31,6 +32,8 @@ app.use(express.static('public'))
 
 // setting body-parser
 app.use(express.urlencoded({extended: true}))
+
+app.use(methodOverride('_method'))
 
 // setting routes
 app.get('/', (req, res) => {
@@ -79,7 +82,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // edit the restaurant
-app.post('/restaurants/:id', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const restaurantEdited = req.body
   RestaurantModel.findById(req.params.id)
     .then(restaurant => {
@@ -93,7 +96,7 @@ app.post('/restaurants/:id', (req, res) => {
 })
 
 // delete the restaurant
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   RestaurantModel.findById(req.params.id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
