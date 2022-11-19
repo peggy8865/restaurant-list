@@ -50,6 +50,12 @@ header {
   border-color: #ced4da;
 }
 
+.dropdown.sort {
+  position: absolute;
+  top: 420px;
+  right: 5%;
+}
+
 .card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
@@ -83,6 +89,10 @@ header {
   .card img {
     height: 115px;
   }
+  .dropdown.sort {
+    top: 450px;
+    right: 20%
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -96,6 +106,10 @@ header {
 
   .card img {
     height: auto;
+  }
+  .dropdown.sort {
+    top: 480px;
+    right: 5%
   }
 
 }

@@ -62,6 +62,20 @@
   </div>
 </div>
 
+<!-- dropdown for data sorting, if place it on the top of restaurant list, modal cannot work -->
+<div class="dropdown sort">
+  <button class="btn btn-major dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    排序方式
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/{{#if keyword}}search?keyword={{keyword}}{{/if}}">無</a></li>
+    <li><a class="dropdown-item" href="/{{#if keyword}}search?keyword={{keyword}}&{{else}}?{{/if}}sort=AtoZ">A -> Z</a></li>
+    <li><a class="dropdown-item" href="/{{#if keyword}}search?keyword={{keyword}}&{{else}}?{{/if}}sort=ZtoA">Z -> A</a></li>
+    <li><a class="dropdown-item" href="/{{#if keyword}}search?keyword={{keyword}}&{{else}}?{{/if}}sort=category">類別</a></li>
+    <li><a class="dropdown-item" href="/{{#if keyword}}search?keyword={{keyword}}&{{else}}?{{/if}}sort=location">地區</a></li>
+  </ul>
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="create-restaurant" tabindex="-1" aria-labelledby="modal1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
