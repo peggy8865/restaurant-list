@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
   RestaurantModel.find()
     .lean()
     .sort(getSortOrder(sort))
-    .then(restaurants => res.render('index', { restaurants }))
+    .then(restaurants => res.render('index', { restaurants, sort }))
     .catch(error => console.log(error))
 })
 
@@ -35,7 +35,7 @@ router.get('/search', (req, res) => {
         return nameMatched || categoryMatched
       })
       restaurantsFiltered = restaurantsFiltered.length ? restaurantsFiltered : false
-      res.render('index', { restaurants: restaurantsFiltered, keyword })
+      res.render('index', { restaurants: restaurantsFiltered, keyword, sort })
     })
     .catch(error => console.log(error))
 })
