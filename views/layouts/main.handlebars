@@ -19,6 +19,12 @@
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
           我的餐廳清單
         </a>
+        {{#if isAuthenticated}}
+        <p class="my-0 ms-auto me-3">哈囉，{{#greetToUser user.name user.email}}{{/greetToUser}}！</p>
+        <a href="/users/logout" class="btn btn-nav">登出</a>
+        {{else}}
+        <a href="/users/login" class="btn btn-nav">登入</a>
+        {{/if}}
       </div>
     </nav>
   

@@ -15,3 +15,10 @@ Handlebars.registerHelper('sortText', function (sort) {
     default: return '無'
   }
 })
+
+Handlebars.registerHelper('greetToUser', function (name, email) {
+  if (name) return name
+  const endIndex = email.indexOf('@')
+  const emailAccount = email.slice(0, endIndex)
+  return emailAccount
+})

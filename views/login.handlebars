@@ -1,0 +1,17 @@
+<div class="container login-form">
+  <h4>登入</h4>
+  {{> message}}
+  <form action="/users/login" method="POST">
+    <div class="mb-3">
+      <label for="email" class="form-label">信箱<span class="text-danger">*</span></label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="ex: tomcruise@example.com">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">密碼<span class="text-danger">*</span></label>
+      <input type="password" class="form-control" id="password" name="password">
+    </div>
+    <button type="submit" class="btn btn-major v2 d-flex ms-auto">登入</button>
+  </form>
+  <p>還沒註冊帳號嗎? <a href="/users/register" class="link-major">點我註冊</a></p>
+  <p>不想註冊帳號嗎? <a href="/auth/facebook" class="link-major">直接用 Facebook 登入</a></p>
+</div>

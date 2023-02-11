@@ -1,0 +1,31 @@
+{{!-- logout notification --}}
+{{#if logout_msg}}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{logout_msg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{{/if}}
+{{!-- login required --}}
+{{#if login_warning_msg}}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{login_warning_msg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{{/if}}
+{{!-- login failed --}}
+{{#if error}}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{{/if}}
+{{!-- registration failed --}}
+{{#if errors}}
+  {{#each errors}}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{this.message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/each}}
+{{/if}}
+

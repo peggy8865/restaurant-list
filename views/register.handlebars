@@ -1,0 +1,25 @@
+<div class="container register-form">
+  <h4>註冊</h4>
+  {{> message}}
+  <form action="/users/register" method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">姓名</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{name}}">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">信箱<span class="text-danger">*</span></label>
+      <input type="email" class="form-control" id="email" name="email" value="{{email}}">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">密碼<span class="text-danger">*</span></label>
+      <input type="password" class="form-control" id="password" name="password" value="{{password}}">
+    </div>
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">確認密碼<span class="text-danger">*</span></label>
+      <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" value="{{confirmPassword}}">
+    </div>
+    <button type="submit" class="btn btn-major v2 d-flex ms-auto">確定註冊</button>
+  </form>
+  <p>已經有帳號了嗎? <a href="/users/login" class="link-major">點我登入</a></p>
+  <p>不想註冊帳號嗎? <a href="/auth/facebook" class="link-major">直接用 Facebook 登入</a></p>
+</div>

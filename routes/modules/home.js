@@ -14,8 +14,9 @@ function getSortOrder(sortOption) {
 }
 
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const sort = req.query.sort
-  RestaurantModel.find()
+  RestaurantModel.find({ userId })
     .lean()
     .sort(getSortOrder(sort))
     .then(restaurants => res.render('index', { restaurants, sort }))
@@ -23,9 +24,10 @@ router.get('/', (req, res) => {
 })
 
 router.get('/search', (req, res) => {
+  const userId = req.user._id
   const keyword = req.query.keyword
   const sort = req.query.sort
-  RestaurantModel.find()
+  RestaurantModel.find({ userId })
     .lean()
     .sort(getSortOrder(sort))
     .then(restaurants => {
