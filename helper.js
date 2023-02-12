@@ -22,3 +22,8 @@ Handlebars.registerHelper('greetToUser', function (name, email) {
   const emailAccount = email.slice(0, endIndex)
   return emailAccount
 })
+
+Handlebars.registerHelper('priorSelected', function (category, option) {
+  if (category === option) return 'selected'
+  return
+})

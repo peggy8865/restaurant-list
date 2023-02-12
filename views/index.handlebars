@@ -90,30 +90,35 @@
             <div class="col border-end px-3">
               <p class="text-black-50 my-0"><small>(必填欄位)</small></p>
               <label for="name" class="col-form-label">餐廳名稱：</label>
-              <input type="text" class="form-control" id="name" name="name" required>
+              <input type="text" class="form-control" id="name" name="name" maxlength="50" placeholder="最長不得超過50字" required>
               <label for="category" class="col-form-label">餐廳類型：</label>
-              <input type="text" class="form-control" list="suggested-category" id="category" name="category" required>
-              <datalist id="suggested-category">
-                <option value="中東料理">
-                <option value="日本料理">
-                <option value="義式餐廳">
-                <option value="美式">
-                <option value="酒吧">
-                <option value="咖啡">
-              </datalist>
+              <select class="form-select" id="category" name="category" aria-label="category" required>
+                <option value="" selected disabled>請選擇</option>
+                <option value="中東料理">中東料理</option>
+                <option value="日本料理">日本料理</option>
+                <option value="義式餐廳">義式餐廳</option>
+                <option value="美式">美式</option>
+                <option value="酒吧">酒吧</option>
+                <option value="咖啡">咖啡</option>
+              </select>
               <label for="rating" class="col-form-label">評分：</label>
               <input type="number" class="form-control" id="rating" name="rating" placeholder="0-5顆星" step="0.1" max="5" min="0" required>
             </div>
             <div class="col px-3">
               <p class="text-black-50 my-0"><small>(自由填答)</small></p>
               <label for="description" class="col-form-label">簡介：</label>
-              <textarea class="form-control" id="description" name="description" rows="5" cols="33"></textarea>
+              <textarea class="form-control" id="description" name="description" maxlength="1000" rows="5" cols="33" placeholder="最長不得超過1000字"></textarea>
               <label for="image" class="col-form-label">照片：</label>
-              <input type="text" class="form-control" id="image" name="image" placeholder="請輸入圖片網址">
+              <input type="url" class="form-control" id="image" name="image" placeholder="請輸入圖片網址">
               <label for="location" class="col-form-label">地址：</label>
-              <input type="text" class="form-control" id="location" name="location">
+              <input type="text" class="form-control" id="location" name="location" maxlength="50" placeholder="最長不得超過50字">
               <label for="phone" class="col-form-label">電話：</label>
-              <input type="text" class="form-control" id="phone" name="phone">
+              <div>
+                <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9\s\-()]{6,20}" placeholder="請輸入電話號碼">
+                <div class="input-hint">
+                  長度需介於6至20字元之間，可包含半形數字、空白、"()"或"-"
+                </div>
+              </div>
             </div>
           </div>
           <div class="d-flex my-3">

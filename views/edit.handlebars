@@ -5,27 +5,27 @@
     <div class="col-12 col-md-10 mx-auto">
       <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST">
       <!-- buttons -->
-      <div class="d-flex mb-3">
-        <button type="submit" class="btn btn-outline-secondary ms-auto">儲存</button>
-        <a href="./" class="btn btn-light ms-2">取消</a>
-      </div>
+        <div class="d-flex mb-3">
+          <button type="submit" class="btn btn-outline-secondary ms-auto">儲存</button>
+          <a href="./" class="btn btn-light ms-2">取消</a>
+        </div>
 
       <!-- details -->
         <div class="row px-2">
           <div class="col border-end px-3 mb-4">
             <p class="text-black-50 my-0"><small>(必填欄位)</small></p>
             <label for="name" class="col-form-label">餐廳名稱：</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{restaurant.name}}" required>
+            <input type="text" class="form-control" id="name" name="name" value="{{restaurant.name}}" maxlength="50" placeholder="最長不得超過50字" required>
             <label for="category" class="col-form-label">餐廳類型：</label>
-            <input type="text" class="form-control" list="suggested-category" id="category" name="category" value="{{restaurant.category}}" required>
-            <datalist id="suggested-category">
-              <option value="中東料理">
-              <option value="日本料理">
-              <option value="義式餐廳">
-              <option value="美式">
-              <option value="酒吧">
-              <option value="咖啡">
-            </datalist>
+            <select class="form-select" id="category" name="category" value="{{restaurant.category}}" aria-label="category" required>
+              <option value="" disabled>請選擇</option>
+              <option value="中東料理" {{#priorSelected restaurant.category '中東料理'}}{{/priorSelected}}>中東料理</option>
+              <option value="日本料理" {{#priorSelected restaurant.category '日本料理'}}{{/priorSelected}}>日本料理</option>
+              <option value="義式餐廳" {{#priorSelected restaurant.category '義式餐廳'}}{{/priorSelected}}>義式餐廳</option>
+              <option value="美式" {{#priorSelected restaurant.category '美式'}}{{/priorSelected}}>美式</option>
+              <option value="酒吧" {{#priorSelected restaurant.category '酒吧'}}{{/priorSelected}}>酒吧</option>
+              <option value="咖啡" {{#priorSelected restaurant.category '咖啡'}}{{/priorSelected}}>咖啡</option>
+            </select>
             <label for="rating" class="col-form-label">評分：</label>
             <input type="number" class="form-control" id="rating" name="rating" placeholder="0-5顆星" step="0.1" max="5"
               min="0" value="{{restaurant.rating}}" required>
@@ -33,13 +33,19 @@
           <div class="col px-3 mb-4">
             <p class="text-black-50 my-0"><small>(自由填答)</small></p>
             <label for="description" class="col-form-label">簡介：</label>
-            <textarea class="form-control" id="description" name="description" rows="5" cols="33">{{restaurant.description}}</textarea>
+            <textarea class="form-control" id="description" name="description" maxlength="1000" rows="5" cols="33"
+              placeholder="最長不得超過1000字">{{restaurant.description}}</textarea>
             <label for="image" class="col-form-label">照片：</label>
-            <input type="text" class="form-control" id="image" name="image" placeholder="請輸入圖片網址" value="{{restaurant.image}}">
+            <input type="url" class="form-control" id="image" name="image" value="{{restaurant.image}}" placeholder="請輸入圖片網址">
             <label for="location" class="col-form-label">地址：</label>
-            <input type="text" class="form-control" id="location" name="location" value="{{restaurant.location}}">
+            <input type="text" class="form-control" id="location" name="location" value="{{restaurant.location}}" maxlength="50" placeholder="最長不得超過50字">
             <label for="phone" class="col-form-label">電話：</label>
-            <input type="text" class="form-control" id="phone" name="phone" value="{{restaurant.phone}}">
+            <div>
+              <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9\s\-()]{6,20}" value="{{restaurant.phone}}" placeholder="請輸入電話號碼">
+              <div class="input-hint">
+                長度需介於6至20字元之間，可包含半形數字、空白、"()"或"-"
+              </div>
+            </div>
           </div>
         </div>
       </form>
